@@ -5,28 +5,29 @@ searchurl: '{{ baseurl }}/search'
 
 jobs:
   # Load the search page and extract codes for search options to use in main search
-  - what: "search page to find search options"
+  - operation: attribute
+    what: "search page to find search options"
     url: '{{ searchurl }}?r=50&l=en'
     # file: null
     # ready: null
     extract:
-      operation: attribute
       into: amenity
       xpath: '//input[@data-ya-track="electric-vehicle-charging-station"]'
       attribute: 'value'
       what: 'amenity code for electric vehicle charging stations'
   # Now do the main search, iterating through all the countries and regions within those countries, extracting store URLs
-  - what: "search results for all EV charging locations"
+  - operation: attributes
+    what: "search results for all EV charging locations"
     url: "{{ searchurl }}?locations=all&r=50&amenity={{ amenity }}&l=en"
     file: "{{ workdir }}/all-locations.html"
     ready: '//div[contains(@class, "Locator-resultsSummary")]'
     extract:
-      operation: attributes
       xpath: '//a[@class="Teaser-titleLink"]'
       attribute: 'href'
       into: urls
   # Now fetch the store detail pages and extract the interesting data into an array
-  - what: 'store details'
+  - operation: items
+    what: 'store details'
     url: "{{ baseurl }}/{{ url|raw }}"
     file: "{{ workdir }}/{{ url|replace({'/': '-'})|raw }}.html"
     data:
@@ -35,7 +36,6 @@ jobs:
       - name: url
         key: urls
     extract:
-      operation: items
       into: details
       items:
         name: '//h1[@itemprop="name"]/text()[following-sibling::br[1]]'
@@ -54,9 +54,9 @@ jobs:
             type: './div[contains(@class, "EvCharger-powerinfo")]/span[1]'
             power: './div[contains(@class, "EvCharger-powerinfo")]/span[2]'
   # Finished.  Now output the data we captured
-  - what: 'output'
+  - operation: output
+    what: 'output'
     extract:
-      operation: output
       output: php://output
       format: csv
       from: details

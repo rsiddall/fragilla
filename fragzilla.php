@@ -222,10 +222,10 @@ use HeadlessChromium\Dom\Selector\XPathSelector;
 function do_operation($page, $job, $yaml) {
 
 	$extract = $job['extract'];
-	if ($extract['operation'] === 'dump') {
+	if ($job['operation'] === 'dump') {
 		print_r($yaml);
 		return $yaml;
-	} else if ($extract['operation'] === 'output') {
+	} else if ($job['operation'] === 'output') {
 		if (array_key_exists('debug', $yaml)) {
 			print_r($yaml);
 		}
@@ -268,14 +268,14 @@ function do_operation($page, $job, $yaml) {
 		);
 	}
 
-	if ($extract['operation'] === 'attribute') {
+	if ($job['operation'] === 'attribute') {
 		$rslt = extract_element_attribute($html,
 						$extract['xpath'],
 						$extract['attribute'],
 						expand_string('what', $extract, $yaml)
 						);
 		$yaml[$extract['into']] = $rslt;
-	} else if ($extract['operation'] === 'attributes') {
+	} else if ($job['operation'] === 'attributes') {
 		$rslt = extract_element_attribute_multi($html,
 						$extract['xpath'],
 						$extract['attribute'],
@@ -287,14 +287,14 @@ function do_operation($page, $job, $yaml) {
 		foreach ($rslt as $attr) {
 			$yaml[$extract['into']][] = $attr;
 		}
-	} else if ($extract['operation'] === 'items') {
+	} else if ($job['operation'] === 'items') {
 		$rslt = extract_details($html, $extract['items']);
 		if (!array_key_exists($extract['into'], $yaml)) {
 			$yaml[$extract['into']] = array();
 		}
 		$yaml[$extract['into']][] = $rslt;
 	} else {
-		echo "Unknown operation {$extract['operation']}\n";
+		echo "Unknown operation {$job['operation']}\n";
 		exit(0);
 	}
 	return $yaml;
