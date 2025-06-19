@@ -45,6 +45,8 @@ jobs:
         state: '//a//abbr[contains(@class, "c-address-state")]'
         zip: '//a//span[contains(@class, "c-address-postal-code")]'
         country: '//a//abbr[contains(@class, "c-address-country-name")]'
+        latitude: '//div[contains(@class, "About-map")]//meta[@itemprop="latitude"]/@content'
+        longitude: '//div[contains(@class, "About-map")]//meta[@itemprop="longitude"]/@content'
         chargers:
           base: '//div[contains(@class, "EvCharger-Cardinfo")]'
           fields:
