@@ -16,7 +16,7 @@ jobs:
       attribute: 'value'
       what: 'amenity code for electric vehicle charging stations'
   # Now do the main search, iterating through all the countries and regions within those countries, extracting store URLs
-  - what: "search results for {{ state.long_name }}, {{ country.long_name }}"
+  - what: "search results for all EV charging locations"
     url: "{{ searchurl }}?locations=all&r=50&amenity={{ amenity }}&l=en"
     file: "{{ workdir }}/all-locations.html"
     ready: '//div[contains(@class, "Locator-resultsSummary")]'
