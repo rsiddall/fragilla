@@ -221,9 +221,11 @@ use HeadlessChromium\Dom\Selector\XPathSelector;
 
 function do_operation($page, $job, $yaml) {
 
-	$extract = $job['extract'];
 	if ($job['operation'] === 'dump') {
 		print_r($yaml);
+		return $yaml;
+	} else if ($job['operation'] === 'message') {
+		echo expand_string('message', $job, $yaml) . "\n";
 		return $yaml;
 	} else if ($job['operation'] === 'output') {
 		if (array_key_exists('debug', $yaml)) {
@@ -242,7 +244,7 @@ function do_operation($page, $job, $yaml) {
 		} else if (array_key_exists('format', $job)) {
 			$format = $job['format'];
 		}
-		$data = $yaml[$extract['from']];
+		$data = $yaml[$job['from']];
 		if ($format === 'json') {
 			file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
 		} else if ($format === 'csv') {
@@ -250,6 +252,8 @@ function do_operation($page, $job, $yaml) {
 		}
 		return $yaml;
 	}
+
+	$extract = $job['extract'];
 
 	$file = expand_string('file', $job, $yaml);
 

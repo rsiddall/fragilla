@@ -4,6 +4,8 @@ baseurl: 'https://locations.pilotflyingj.com'
 searchurl: '{{ baseurl }}/search'
 
 jobs:
+  - operation: message
+    message: "Starting scraping of Pilot/Flying-J locations"
   # Load the search page and extract codes for search options to use in main search
   - operation: attribute
     what: "search page to find search options"
@@ -56,7 +58,9 @@ jobs:
   # Finished.  Now output the data we captured
   - operation: output
     what: 'output'
+    from: details
     extract:
       output: php://output
       format: csv
-      from: details
+  - operation: message
+    message: "Scraping of Pilot/Flying-J locations complete"
