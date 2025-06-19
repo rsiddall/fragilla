@@ -17,9 +17,10 @@ function usage($reason = '') {
 	exit(0);
 }
 
-$nextarg;
+$nextarg = 0;
 $options = getopt("dhf:no:", [], $nextarg);
 
+$yaml = array();
 if (count($argv) != $nextarg + 1) {
 	usage("Missing YAML file");
 } else if (($yaml = yaml_parse_file($argv[$nextarg])) === false) {
@@ -252,7 +253,7 @@ function do_operation($page, $job, $yaml) {
 
 	$file = expand_string('file', $job, $yaml);
 
-	if (array_key_exists('local', $yaml) && $yaml[local] === 'y') {
+	if (array_key_exists('local', $yaml) && $yaml['local'] === 'y') {
 		$html = file_get_contents($file);
 	} else {
 		$ready = expand_string('ready', $job, $yaml);
