@@ -27,7 +27,7 @@ jobs:
       into: urls
   # Now fetch the store detail pages and extract the interesting data into an array
   - what: 'store details'
-    url: "https://locations.pilotflyingj.com/{{ url|raw }}"
+    url: "{{ baseurl }}/{{ url|raw }}"
     file: "{{ workdir }}/{{ url|replace({'/': '-'})|raw }}.html"
     data:
       urls
