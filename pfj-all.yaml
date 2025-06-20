@@ -27,6 +27,9 @@ jobs:
       xpath: '//a[@class="Teaser-titleLink"]'
       attribute: 'href'
       into: urls
+  # Sort the URLs
+  - operation: sort
+    into: urls
   # Now fetch the store detail pages and extract the interesting data into an array
   - operation: items
     what: 'store details'

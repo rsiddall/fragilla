@@ -227,6 +227,11 @@ function do_operation($page, $job, $yaml) {
 	} else if ($job['operation'] === 'message') {
 		echo expand_string('message', $job, $yaml) . "\n";
 		return $yaml;
+	} else if ($job['operation'] === 'sort') {
+		if (array_key_exists('into', $job) && array_key_exists($job['into'], $yaml)) {
+			sort($yaml[$job['into']]);
+		}
+		return $yaml;
 	} else if ($job['operation'] === 'output') {
 		if (array_key_exists('debug', $yaml)) {
 			print_r($yaml);
