@@ -7,7 +7,7 @@ require_once('./vendor/autoload.php');
 
 function usage($reason = '') {
 	echo "$reason\n";
-	echo "fragzilla.php [-d] [-h] [-o <file>] [-f <json|csv>] [-n] <yaml-file>\n";
+	echo "fragilla.php [-d] [-h] [-o <file>] [-f <json|csv>] [-n] <yaml-file>\n";
 	echo "where:\n";
 	echo "-d = debug\n";
 	echo "-h = help\n";
