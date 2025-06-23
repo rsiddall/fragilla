@@ -1,4 +1,8 @@
 # Pilot/Flying-J
+#
+# Downloads EV charging data from the Pilot/Flying-J web site and outputs it as CSV
+# Requires a working directory called 'pfj' to store the CSV and copies of downloaded files 
+#
 workdir: 'pfj'
 baseurl: 'https://locations.pilotflyingj.com'
 searchurl: '{{ baseurl }}/search'
