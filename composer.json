@@ -1,6 +1,6 @@
 {
-    "name": "richard/pfj-downloader",
-    "description": "Downloads the Pilot/Flying-J locations and extracts EV charging data",
+    "name": "rsiddall/fragilla",
+    "description": "A simple, YAML-driven web scraper",
     "type": "project",
     "license": "MIT",
     "authors": [
