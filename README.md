@@ -1,6 +1,6 @@
 # fragilla
 
-fragilla is a simple YAML-controlled web scraper written in PHP.  It uses chrome-php to control a Chromium-based browser to load pages and Twig to expand strings in the YAML.
+fragilla is a simple YAML-controlled web scraper written in PHP.  It uses [chrome-php](https://github.com/chrome-php/chrome) to control a [Chromium](https://www.chromium.org/Home/)-based browser to load pages and [Twig](https://twig.symfony.com/doc/3.x/) to expand strings in the YAML.
 
 The YAML file contains a list of jobs that the scraper will perform.  It can extract single HTML attributes, an array of HTML attributes from the same HTML file, and the text content of specific elements in a page.
 
