@@ -22,7 +22,7 @@ Data is saved into the YAML array.
 
 ## Installation
 
-Ensure you have PHP and a Chromium-based browser installed, clone this repository, then run
+Ensure you have PHP, [composer](https://getcomposer.org/) and a Chromium-based browser installed, clone this repository, then run
 
 ```
 composer update
